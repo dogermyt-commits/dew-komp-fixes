@@ -12,7 +12,7 @@ const About = () => {
           <Card className="p-8 mb-12 shadow-medium border-border">
             <p className="text-lg leading-relaxed mb-6">Dziś, z zdobytym doświadczeniem i nieustanną chęcią rozwoju, pomagamy klientom w naprawie, modernizacji i optymalizacji ich komputerów.</p>
             <p className="text-lg leading-relaxed mb-6">Nasza przygoda z komputerami rozpoczęła się od lat dzieciństwa. Od zawsze fascynowała nas elektronika i możliwości, jakie daje nam technologia. Z czasem hobby przekształciło się w zawód, a my mogliśmy połączyć pasję.</p>
-            <p className="text-lg leading-relaxed">​jebac zycie</p>
+            <p className="text-lg leading-relaxed">​Nasi pracownicy posiadają doświadczenie w tym zawodzie i są odpowiednio szkoleni do wykonywania usług</p>
           </Card>
 
           <div className="grid md:grid-cols-3 gap-6">
