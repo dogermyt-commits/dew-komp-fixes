@@ -74,10 +74,10 @@ const Contact = () => {
                   <div>
                     <h3 className="font-semibold mb-1">Telefon</h3>
                     <a
-                      href="tel:+48123456789"
+                      href="tel:+48535660656"
                       className="text-muted-foreground hover:text-primary transition-colors"
                     >
-                      +48 123 456 789
+                      +48 535 660 656
                     </a>
                   </div>
                 </div>
@@ -90,8 +90,8 @@ const Contact = () => {
                   </div>
                   <div>
                     <h3 className="font-semibold mb-1">Godziny pracy</h3>
-                    <p className="text-muted-foreground">Pon - Pt: 9:00 - 17:00</p>
-                    <p className="text-muted-foreground">Sob: 10:00 - 14:00</p>
+                    <p className="text-muted-foreground">Pon - Pt: 9:00 - 18:00</p>
+                    <p className="text-muted-foreground">Sob: 12:00 - 17:00</p>
                   </div>
                 </div>
               </Card>
@@ -147,9 +147,28 @@ const Contact = () => {
                   />
                 </div>
 
+                <div className="flex items-start gap-2 text-xs text-muted-foreground bg-muted p-3 rounded-md">
+                  <input type="checkbox" required className="mt-0.5" />
+                  <label>
+                    Wyrażam zgodę na przetwarzanie moich danych osobowych zgodnie z{" "}
+                    <a href="/terms" className="text-primary hover:underline">
+                      Polityką Prywatności
+                    </a>
+                    . Administrator danych: DEW-Komp, kontakt@dew-komp.pl
+                  </label>
+                </div>
+
                 <Button type="submit" className="w-full bg-primary hover:bg-primary-dark">
                   Wyślij wiadomość
                 </Button>
+                
+                <p className="text-xs text-center text-muted-foreground">
+                  Aby wysłać formularz, potrzebujesz zintegrować usługę wysyłki emaili jak{" "}
+                  <a href="https://web3forms.com" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">
+                    Web3Forms
+                  </a>
+                  {" "}(darmowa)
+                </p>
               </form>
             </Card>
           </div>

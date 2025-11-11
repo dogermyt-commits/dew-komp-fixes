@@ -14,6 +14,7 @@ const Navigation = () => {
     { to: "/portfolio", label: "Portfolio" },
     { to: "/custom-offer", label: "Oferta indywidualna" },
     { to: "/contact", label: "Kontakt" },
+    { to: "/terms", label: "Regulamin" },
   ];
 
   return (

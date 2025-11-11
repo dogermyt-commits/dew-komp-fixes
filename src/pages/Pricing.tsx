@@ -26,6 +26,11 @@ const Pricing = () => {
       description: "Zamówienie części + złożenie komputera + instalacja Windows + aktywacja + diagnostyka + testy wydajnościowe",
       featured: true,
     },
+    {
+      title: "Czyszczenie i konserwacja",
+      price: "80 zł",
+      description: "Czyszczenie wnętrza komputera, wymiana pasty termoprzewodzącej i podstawowa konserwacja",
+    },
   ];
 
   return (

@@ -38,6 +38,16 @@ const Services = () => {
       title: "Diagnostyka sprzętu",
       description: "Kompleksowa analiza podzespołów i identyfikacja problemów sprzętowych.",
     },
+    {
+      icon: <Monitor className="w-8 h-8" />,
+      title: "Czyszczenie komputera",
+      description: "Profesjonalne czyszczenie wnętrza komputera z kurzu i zanieczyszczeń.",
+    },
+    {
+      icon: <HardDrive className="w-8 h-8" />,
+      title: "Naprawa i wymiana dysków",
+      description: "Diagnoza, naprawa lub wymiana dysków HDD/SSD wraz z migracją danych.",
+    },
   ];
 
   return (

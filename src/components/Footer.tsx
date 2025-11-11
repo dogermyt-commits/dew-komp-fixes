@@ -18,20 +18,24 @@ const Footer = () => {
                 <Mail className="w-4 h-4" />
                 kontakt@dew-komp.pl
               </a>
-              <a href="tel:+48123456789" className="flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors">+48 535 660 656<Phone className="w-4 h-4" />
-                +48 123 456 789
+              <a href="tel:+48535660656" className="flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors">
+                <Phone className="w-4 h-4" />
+                +48 535 660 656
               </a>
             </div>
           </div>
 
           <div>
-            <h3 className="font-semibold mb-4">+48 535 660 656</h3>
+            <h3 className="font-semibold mb-4">Szybkie linki</h3>
             <div className="space-y-2 text-sm">
               <a href="/services" className="block text-muted-foreground hover:text-primary transition-colors">
                 Usługi
               </a>
               <a href="/pricing" className="block text-muted-foreground hover:text-primary transition-colors">
                 Cennik
+              </a>
+              <a href="/terms" className="block text-muted-foreground hover:text-primary transition-colors">
+                Regulamin
               </a>
               <a href="/contact" className="block text-muted-foreground hover:text-primary transition-colors">
                 Kontakt

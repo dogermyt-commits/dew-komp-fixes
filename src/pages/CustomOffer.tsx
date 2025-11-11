@@ -133,9 +133,28 @@ const CustomOffer = () => {
                 </p>
               </div>
 
+              <div className="flex items-start gap-2 text-xs text-muted-foreground bg-muted p-3 rounded-md">
+                <input type="checkbox" required className="mt-0.5" />
+                <label>
+                  Wyrażam zgodę na przetwarzanie moich danych osobowych w celu przygotowania oferty zgodnie z{" "}
+                  <a href="/terms" className="text-primary hover:underline">
+                    Polityką Prywatności
+                  </a>
+                  . Administrator: DEW-Komp, serwis@dew-komp.pl
+                </label>
+              </div>
+
               <Button type="submit" className="w-full bg-primary hover:bg-primary-dark" size="lg">
                 Wyślij zapytanie o wycenę
               </Button>
+              
+              <p className="text-xs text-center text-muted-foreground">
+                Email zostanie wysłany na serwis@dew-komp.pl. 
+                Wymaga integracji usługi wysyłki np.{" "}
+                <a href="https://web3forms.com" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">
+                  Web3Forms
+                </a>
+              </p>
             </form>
           </Card>
 
