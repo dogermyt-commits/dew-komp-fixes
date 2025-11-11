@@ -25,7 +25,7 @@ const Footer = () => {
           </div>
 
           <div>
-            <h3 className="font-semibold mb-4">Szybkie linki</h3>
+            <h3 className="font-semibold mb-4">+48 535 660 656</h3>
             <div className="space-y-2 text-sm">
               <a href="/services" className="block text-muted-foreground hover:text-primary transition-colors">
                 Usługi
