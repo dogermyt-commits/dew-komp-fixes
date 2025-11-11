@@ -3,36 +3,25 @@ import { Card } from "@/components/ui/card";
 import { Wrench, Settings, Cpu, CheckCircle } from "lucide-react";
 import { Link } from "react-router-dom";
 import heroBg from "@/assets/hero-bg.jpg";
-
 const Home = () => {
-  const features = [
-    {
-      icon: <Wrench className="w-8 h-8" />,
-      title: "Naprawa komputerów",
-      description: "Profesjonalna diagnostyka i naprawa sprzętu komputerowego",
-    },
-    {
-      icon: <Settings className="w-8 h-8" />,
-      title: "Modernizacja",
-      description: "Wymiana podzespołów i upgrade komputera",
-    },
-    {
-      icon: <Cpu className="w-8 h-8" />,
-      title: "Instalacja oprogramowania",
-      description: "Instalacja systemów i aktualizacja BIOS",
-    },
-  ];
-
-  return (
-    <div>
+  const features = [{
+    icon: <Wrench className="w-8 h-8" />,
+    title: "Naprawa komputerów",
+    description: "Profesjonalna diagnostyka i naprawa sprzętu komputerowego"
+  }, {
+    icon: <Settings className="w-8 h-8" />,
+    title: "Modernizacja",
+    description: "Wymiana podzespołów i upgrade komputera"
+  }, {
+    icon: <Cpu className="w-8 h-8" />,
+    title: "Instalacja oprogramowania",
+    description: "Instalacja systemów i aktualizacja BIOS"
+  }];
+  return <div>
       {/* Hero Section */}
       <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0 z-0">
-          <img
-            src={heroBg}
-            alt="DEW-Komp Serwis"
-            className="w-full h-full object-cover opacity-20"
-          />
+          <img src={heroBg} alt="DEW-Komp Serwis" className="w-full h-full object-cover opacity-20" />
           <div className="absolute inset-0 bg-gradient-to-br from-background via-background/95 to-primary-light/20" />
         </div>
 
@@ -40,13 +29,8 @@ const Home = () => {
           <h1 className="text-5xl md:text-7xl font-bold mb-6 bg-gradient-primary bg-clip-text text-transparent">
             DEW-Komp
           </h1>
-          <p className="text-xl md:text-2xl text-muted-foreground mb-8 max-w-2xl mx-auto">
-            Profesjonalny serwis komputerowy
-          </p>
-          <p className="text-lg text-muted-foreground mb-8 max-w-xl mx-auto">
-            Specjalizujemy się w naprawie, modernizacji i diagnostyce komputerów. 
-            Z pasją i doświadczeniem dbamy o Twój sprzęt.
-          </p>
+          <p className="text-xl md:text-2xl text-muted-foreground mb-8 max-w-2xl mx-auto">Twój ulubiony serwis komputerowy</p>
+          <p className="text-lg text-muted-foreground mb-8 max-w-xl mx-auto">Sprawdzamy się w naprawie, modernizacji i diagnostyce komputerów. Z pasją i doświadczeniem dbamy o Twój sprzęt.</p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button asChild size="lg" className="bg-primary hover:bg-primary-dark text-primary-foreground shadow-medium">
               <Link to="/services">Poznaj nasze usługi</Link>
@@ -63,13 +47,11 @@ const Home = () => {
         <div className="container mx-auto px-4">
           <h2 className="text-4xl font-bold text-center mb-12">Co oferujemy?</h2>
           <div className="grid md:grid-cols-3 gap-8">
-            {features.map((feature, index) => (
-              <Card key={index} className="p-6 hover:shadow-large transition-shadow border-border bg-card">
+            {features.map((feature, index) => <Card key={index} className="p-6 hover:shadow-large transition-shadow border-border bg-card">
                 <div className="text-primary mb-4">{feature.icon}</div>
                 <h3 className="text-xl font-semibold mb-2">{feature.title}</h3>
                 <p className="text-muted-foreground">{feature.description}</p>
-              </Card>
-            ))}
+              </Card>)}
           </div>
         </div>
       </section>
@@ -121,8 +103,6 @@ const Home = () => {
           </Button>
         </div>
       </section>
-    </div>
-  );
+    </div>;
 };
-
 export default Home;
