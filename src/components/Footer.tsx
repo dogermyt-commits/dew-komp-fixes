@@ -1,8 +1,6 @@
 import { Mail, Phone, Cpu } from "lucide-react";
-
 const Footer = () => {
-  return (
-    <footer className="bg-muted border-t border-border mt-20">
+  return <footer className="bg-muted border-t border-border mt-20">
       <div className="container mx-auto px-4 py-12">
         <div className="grid md:grid-cols-3 gap-8">
           <div>
@@ -10,26 +8,17 @@ const Footer = () => {
               <Cpu className="w-8 h-8 text-primary" />
               <span className="text-xl font-bold">DEW-Komp</span>
             </div>
-            <p className="text-muted-foreground text-sm">
-              Profesjonalny serwis komputerowy. Naprawa, modernizacja i diagnostyka komputerów.
-            </p>
+            <p className="text-muted-foreground text-sm">Twój ulubiony serwis komputerowy. Naprawa, modernizacja i diagnostyka komputerów.</p>
           </div>
 
           <div>
             <h3 className="font-semibold mb-4">Kontakt</h3>
             <div className="space-y-2 text-sm">
-              <a
-                href="mailto:kontakt@dew-komp.pl"
-                className="flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors"
-              >
+              <a href="mailto:kontakt@dew-komp.pl" className="flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors">
                 <Mail className="w-4 h-4" />
                 kontakt@dew-komp.pl
               </a>
-              <a
-                href="tel:+48123456789"
-                className="flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors"
-              >
-                <Phone className="w-4 h-4" />
+              <a href="tel:+48123456789" className="flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors">+48 535 660 656<Phone className="w-4 h-4" />
                 +48 123 456 789
               </a>
             </div>
@@ -55,8 +44,6 @@ const Footer = () => {
           <p>&copy; {new Date().getFullYear()} DEW-Komp. Wszelkie prawa zastrzeżone.</p>
         </div>
       </div>
-    </footer>
-  );
+    </footer>;
 };
-
 export default Footer;
