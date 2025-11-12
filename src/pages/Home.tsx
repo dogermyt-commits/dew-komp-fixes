@@ -155,9 +155,7 @@ const Home = () => {
             <Card className="p-6 border-border bg-card">
               <div className="mb-4">
                 <div className="flex gap-1 mb-3">
-                  {[...Array(5)].map((_, i) => (
-                    <span key={i} className="text-primary text-xl">★</span>
-                  ))}
+                  {[...Array(5)].map((_, i) => <span key={i} className="text-primary text-xl">★</span>)}
                 </div>
                 <p className="text-muted-foreground italic mb-4">
                   "Bardzo szybka naprawa laptopa. Tego samego dnia miałem gotowy sprzęt z nowym dyskiem SSD. Polecam serwis DEW-Komp w Zabrzu!"
@@ -172,13 +170,9 @@ const Home = () => {
             <Card className="p-6 border-border bg-card">
               <div className="mb-4">
                 <div className="flex gap-1 mb-3">
-                  {[...Array(5)].map((_, i) => (
-                    <span key={i} className="text-primary text-xl">★</span>
-                  ))}
+                  {[...Array(5)].map((_, i) => <span key={i} className="text-primary text-xl">★</span>)}
                 </div>
-                <p className="text-muted-foreground italic mb-4">
-                  "Profesjonalna obsługa i uczciwe ceny. Pan Dominik dokładnie wytłumaczył, co było nie tak z komputerem. Modernizacja przebiegła bez problemu."
-                </p>
+                <p className="text-muted-foreground italic mb-4">"Profesjonalna obsługa i uczciwe ceny. Pan Daniel dokładnie wytłumaczył, co było nie tak z komputerem. Modernizacja przebiegła bez problemu."</p>
               </div>
               <div className="border-t border-border pt-4">
                 <p className="font-semibold">Anna W.</p>
@@ -189,9 +183,7 @@ const Home = () => {
             <Card className="p-6 border-border bg-card">
               <div className="mb-4">
                 <div className="flex gap-1 mb-3">
-                  {[...Array(5)].map((_, i) => (
-                    <span key={i} className="text-primary text-xl">★</span>
-                  ))}
+                  {[...Array(5)].map((_, i) => <span key={i} className="text-primary text-xl">★</span>)}
                 </div>
                 <p className="text-muted-foreground italic mb-4">
                   "Świetny kontakt i fachowe podejście. Komputer działa jak nowy po wymianie pasty i czyszczeniu. Gorąco polecam!"
