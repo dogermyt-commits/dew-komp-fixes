@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { NavLink } from "./NavLink";
-import { Menu, X, Cpu } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { Button } from "./ui/button";
+import logo from "@/assets/logo.png";
 
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -22,7 +23,7 @@ const Navigation = () => {
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16">
           <NavLink to="/" className="flex items-center gap-2 text-xl font-bold text-primary hover:text-primary-dark transition-colors">
-            <Cpu className="w-8 h-8" />
+            <img src={logo} alt="DEW-Komp Logo" className="w-10 h-10" />
             <span>DEW-Komp</span>
           </NavLink>
 

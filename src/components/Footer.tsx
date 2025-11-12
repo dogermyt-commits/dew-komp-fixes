@@ -1,11 +1,12 @@
-import { Mail, Phone, Cpu } from "lucide-react";
+import { Mail, Phone } from "lucide-react";
+import logo from "@/assets/logo.png";
 const Footer = () => {
   return <footer className="bg-muted border-t border-border mt-20">
       <div className="container mx-auto px-4 py-12">
         <div className="grid md:grid-cols-3 gap-8">
           <div>
             <div className="flex items-center gap-2 mb-4">
-              <Cpu className="w-8 h-8 text-primary" />
+              <img src={logo} alt="DEW-Komp Logo" className="w-10 h-10" />
               <span className="text-xl font-bold">DEW-Komp</span>
             </div>
             <p className="text-muted-foreground text-sm">Twój ulubiony serwis komputerowy. Naprawa, modernizacja i diagnostyka komputerów.</p>
