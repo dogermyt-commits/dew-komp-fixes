@@ -27,14 +27,15 @@ const Home = () => {
 
         <div className="container mx-auto px-4 z-10 text-center">
           <h1 className="text-5xl md:text-7xl font-bold mb-6 bg-gradient-primary bg-clip-text text-transparent">
-            DEW-Komp
+            DEW-Komp – Twój serwis komputerowy w Zabrzu
           </h1>
-          <p className="text-xl md:text-2xl text-muted-foreground mb-4 max-w-2xl mx-auto">
-            Serwis Komputerowy w Zabrzu
-          </p>
           <p className="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto">
-            Profesjonalna naprawa, modernizacja i diagnostyka komputerów. 
-            Działamy szybko, solidnie i w przystępnych cenach. Zaufało nam już wielu klientów z Zabrza i okolic.
+            Potrzebujesz szybkiej i profesjonalnej naprawy komputera lub modernizacji sprzętu? 
+            DEW-Komp to miejsce, gdzie Twoje urządzenia odzyskują pełną sprawność. Nasza pasja do 
+            komputerów i wieloletnie doświadczenie gwarantują, że Twój sprzęt jest w dobrych rękach.
+          </p>
+          <p className="text-xl font-semibold text-foreground mb-8">
+            Skontaktuj się z nami i daj swojemu komputerowi drugie życie!
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button asChild size="lg" className="bg-primary hover:bg-primary-dark text-primary-foreground shadow-medium">

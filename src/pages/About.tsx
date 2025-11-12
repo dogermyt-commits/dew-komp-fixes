@@ -10,15 +10,11 @@ const About = () => {
           </p>
 
           <Card className="p-8 mb-12 shadow-medium border-border">
-            <h2 className="text-2xl font-bold mb-4">Kim jesteśmy?</h2>
-            <p className="text-lg leading-relaxed mb-6">
-              DEW-Komp to lokalny serwis komputerowy działający w Zabrzu. Nasza przygoda z komputerami rozpoczęła się od lat dzieciństwa – od zawsze fascynowała nas elektronika i możliwości, jakie daje technologia. Z czasem hobby przekształciło się w zawód, a my mogliśmy połączyć pasję z profesjonalizmem.
-            </p>
-            <p className="text-lg leading-relaxed mb-6">
-              Dziś, ze zdobytym doświadczeniem i nieustanną chęcią rozwoju, pomagamy mieszkańcom Zabrza i okolic w naprawie, modernizacji i optymalizacji ich komputerów. Nasi pracownicy posiadają wieloletnie doświadczenie w branży IT i są regularnie szkoleni w zakresie najnowszych technologii.
-            </p>
+            <h2 className="text-2xl font-bold mb-4">O nas</h2>
             <p className="text-lg leading-relaxed">
-              Stawiamy na <strong>indywidualne podejście do każdego klienta</strong>, uczciwe ceny i wysoką jakość świadczonych usług. Dla nas każdy komputer to nie tylko zbiór podzespołów, ale narzędzie pracy lub rozrywki, które musi działać niezawodnie.
+              DEW-Komp to zespół pasjonatów komputerów z wieloletnim doświadczeniem w naprawach i modernizacjach sprzętu. 
+              Cenimy sobie rzetelność, szybkość działania i indywidualne podejście do każdego klienta. 
+              Twoja satysfakcja jest naszym priorytetem.
             </p>
           </Card>
 
