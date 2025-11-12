@@ -143,6 +143,68 @@ const Home = () => {
         </div>
       </section>
 
+      {/* Testimonials Section */}
+      <section className="py-20 bg-muted/30">
+        <div className="container mx-auto px-4">
+          <h2 className="text-4xl font-bold text-center mb-4">Co mówią nasi klienci?</h2>
+          <p className="text-center text-muted-foreground mb-12 max-w-2xl mx-auto">
+            Zaufało nam już wielu klientów z Zabrza i okolic. Zobacz, co o nas piszą.
+          </p>
+          <div className="grid md:grid-cols-3 gap-6 max-w-6xl mx-auto">
+            <Card className="p-6 border-border bg-card">
+              <div className="mb-4">
+                <div className="flex gap-1 mb-3">
+                  {[...Array(5)].map((_, i) => (
+                    <span key={i} className="text-primary text-xl">★</span>
+                  ))}
+                </div>
+                <p className="text-muted-foreground italic mb-4">
+                  "Bardzo szybka naprawa laptopa. Tego samego dnia miałem gotowy sprzęt z nowym dyskiem SSD. Polecam serwis DEW-Komp w Zabrzu!"
+                </p>
+              </div>
+              <div className="border-t border-border pt-4">
+                <p className="font-semibold">Marcin K.</p>
+                <p className="text-sm text-muted-foreground">Zabrze</p>
+              </div>
+            </Card>
+
+            <Card className="p-6 border-border bg-card">
+              <div className="mb-4">
+                <div className="flex gap-1 mb-3">
+                  {[...Array(5)].map((_, i) => (
+                    <span key={i} className="text-primary text-xl">★</span>
+                  ))}
+                </div>
+                <p className="text-muted-foreground italic mb-4">
+                  "Profesjonalna obsługa i uczciwe ceny. Pan Dominik dokładnie wytłumaczył, co było nie tak z komputerem. Modernizacja przebiegła bez problemu."
+                </p>
+              </div>
+              <div className="border-t border-border pt-4">
+                <p className="font-semibold">Anna W.</p>
+                <p className="text-sm text-muted-foreground">Gliwice</p>
+              </div>
+            </Card>
+
+            <Card className="p-6 border-border bg-card">
+              <div className="mb-4">
+                <div className="flex gap-1 mb-3">
+                  {[...Array(5)].map((_, i) => (
+                    <span key={i} className="text-primary text-xl">★</span>
+                  ))}
+                </div>
+                <p className="text-muted-foreground italic mb-4">
+                  "Świetny kontakt i fachowe podejście. Komputer działa jak nowy po wymianie pasty i czyszczeniu. Gorąco polecam!"
+                </p>
+              </div>
+              <div className="border-t border-border pt-4">
+                <p className="font-semibold">Tomasz S.</p>
+                <p className="text-sm text-muted-foreground">Zabrze</p>
+              </div>
+            </Card>
+          </div>
+        </div>
+      </section>
+
       {/* CTA Section */}
       <section className="py-20 bg-gradient-primary text-primary-foreground">
         <div className="container mx-auto px-4 text-center">
