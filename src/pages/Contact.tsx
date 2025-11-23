@@ -14,11 +14,11 @@ const Contact = () => {
     phone: "",
     message: "",
   });
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
-    // Basic validation
     if (!formData.name || !formData.email || !formData.message) {
       toast({
         title: "Błąd",
@@ -28,13 +28,42 @@ const Contact = () => {
       return;
     }
 
-    // In production, this would send to backend
-    toast({
-      title: "Wiadomość wysłana!",
-      description: "Dziękujemy za kontakt. Odpowiemy tak szybko, jak to możliwe.",
-    });
-    
-    setFormData({ name: "", email: "", phone: "", message: "" });
+    setIsSubmitting(true);
+
+    try {
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          access_key: "58076f89-f9b0-4df0-812a-068bd92c41b3",
+          name: formData.name,
+          email: formData.email,
+          phone: formData.phone,
+          message: formData.message,
+          subject: "Nowa wiadomość z formularza kontaktowego - DEW-Komp",
+        }),
+      });
+
+      if (response.ok) {
+        toast({
+          title: "Wiadomość wysłana!",
+          description: "Dziękujemy za kontakt. Odpowiemy tak szybko, jak to możliwe.",
+        });
+        setFormData({ name: "", email: "", phone: "", message: "" });
+      } else {
+        throw new Error("Błąd wysyłania");
+      }
+    } catch (error) {
+      toast({
+        title: "Błąd",
+        description: "Nie udało się wysłać wiadomości. Spróbuj ponownie później.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -158,17 +187,13 @@ const Contact = () => {
                   </label>
                 </div>
 
-                <Button type="submit" className="w-full bg-primary hover:bg-primary-dark">
-                  Wyślij wiadomość
+                <Button 
+                  type="submit" 
+                  className="w-full bg-primary hover:bg-primary-dark"
+                  disabled={isSubmitting}
+                >
+                  {isSubmitting ? "Wysyłanie..." : "Wyślij wiadomość"}
                 </Button>
-                
-                <p className="text-xs text-center text-muted-foreground">
-                  Aby wysłać formularz, potrzebujesz zintegrować usługę wysyłki emaili jak{" "}
-                  <a href="https://web3forms.com" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">
-                    Web3Forms
-                  </a>
-                  {" "}(darmowa)
-                </p>
               </form>
             </Card>
           </div>
