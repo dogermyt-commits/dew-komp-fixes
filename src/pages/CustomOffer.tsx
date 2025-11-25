@@ -16,9 +16,7 @@ const CustomOffer = () => {
     budget: "",
     description: "",
   });
-  const [isSubmitting, setIsSubmitting] = useState(false);
-
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     
     if (!formData.name || !formData.email || !formData.description) {
@@ -30,55 +28,22 @@ const CustomOffer = () => {
       return;
     }
 
-    setIsSubmitting(true);
-
-    try {
-      const response = await fetch("https://api.web3forms.com/submit", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          access_key: "58076f89-f9b0-4df0-812a-068bd92c41b3",
-          name: formData.name,
-          email: formData.email,
-          phone: formData.phone,
-          message: `
-Rodzaj usługi: ${formData.serviceType}
-Budżet: ${formData.budget}
-
-Opis potrzeb:
-${formData.description}
-          `,
-          subject: "Zapytanie o ofertę indywidualną - DEW-Komp",
-        }),
-      });
-
-      if (response.ok) {
-        toast({
-          title: "Zapytanie wysłane!",
-          description: "Przygotujemy dla Ciebie indywidualną ofertę i skontaktujemy się wkrótce.",
-        });
-        setFormData({
-          name: "",
-          email: "",
-          phone: "",
-          serviceType: "",
-          budget: "",
-          description: "",
-        });
-      } else {
-        throw new Error("Błąd wysyłania");
-      }
-    } catch (error) {
-      toast({
-        title: "Błąd",
-        description: "Nie udało się wysłać zapytania. Spróbuj ponownie później.",
-        variant: "destructive",
-      });
-    } finally {
-      setIsSubmitting(false);
-    }
+    const subject = encodeURIComponent("Zapytanie o indywidualną wycenę - DEW-Komp");
+    const body = encodeURIComponent(
+      `Imię i nazwisko: ${formData.name}\n` +
+      `Email: ${formData.email}\n` +
+      `Telefon: ${formData.phone || "Nie podano"}\n` +
+      `Rodzaj usługi: ${formData.serviceType || "Nie podano"}\n` +
+      `Budżet: ${formData.budget || "Nie podano"}\n\n` +
+      `Opis projektu:\n${formData.description}`
+    );
+    
+    window.location.href = `mailto:kontakt@dew-komp.pl?subject=${subject}&body=${body}`;
+    
+    toast({
+      title: "Otwieranie klienta email...",
+      description: "Twoja aplikacja email zostanie uruchomiona z wypełnioną wiadomością.",
+    });
   };
 
   return (
@@ -185,9 +150,8 @@ ${formData.description}
                 type="submit" 
                 className="w-full bg-primary hover:bg-primary-dark" 
                 size="lg"
-                disabled={isSubmitting}
               >
-                {isSubmitting ? "Wysyłanie..." : "Wyślij zapytanie o wycenę"}
+                Wyślij zapytanie o wycenę
               </Button>
             </form>
           </Card>

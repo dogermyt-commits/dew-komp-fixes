@@ -14,9 +14,9 @@ const Contact = () => {
     phone: "",
     message: "",
   });
-  const [isSubmitting, setIsSubmitting] = useState(false);
+  
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     
     if (!formData.name || !formData.email || !formData.message) {
@@ -28,42 +28,20 @@ const Contact = () => {
       return;
     }
 
-    setIsSubmitting(true);
-
-    try {
-      const response = await fetch("https://api.web3forms.com/submit", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          access_key: "58076f89-f9b0-4df0-812a-068bd92c41b3",
-          name: formData.name,
-          email: formData.email,
-          phone: formData.phone,
-          message: formData.message,
-          subject: "Nowa wiadomość z formularza kontaktowego - DEW-Komp",
-        }),
-      });
-
-      if (response.ok) {
-        toast({
-          title: "Wiadomość wysłana!",
-          description: "Dziękujemy za kontakt. Odpowiemy tak szybko, jak to możliwe.",
-        });
-        setFormData({ name: "", email: "", phone: "", message: "" });
-      } else {
-        throw new Error("Błąd wysyłania");
-      }
-    } catch (error) {
-      toast({
-        title: "Błąd",
-        description: "Nie udało się wysłać wiadomości. Spróbuj ponownie później.",
-        variant: "destructive",
-      });
-    } finally {
-      setIsSubmitting(false);
-    }
+    const subject = encodeURIComponent("Wiadomość z formularza kontaktowego - DEW-Komp");
+    const body = encodeURIComponent(
+      `Imię i nazwisko: ${formData.name}\n` +
+      `Email: ${formData.email}\n` +
+      `Telefon: ${formData.phone || "Nie podano"}\n\n` +
+      `Wiadomość:\n${formData.message}`
+    );
+    
+    window.location.href = `mailto:kontakt@dew-komp.pl?subject=${subject}&body=${body}`;
+    
+    toast({
+      title: "Otwieranie klienta email...",
+      description: "Twoja aplikacja email zostanie uruchomiona z wypełnioną wiadomością.",
+    });
   };
 
   return (
@@ -190,9 +168,8 @@ const Contact = () => {
                 <Button 
                   type="submit" 
                   className="w-full bg-primary hover:bg-primary-dark"
-                  disabled={isSubmitting}
                 >
-                  {isSubmitting ? "Wysyłanie..." : "Wyślij wiadomość"}
+                  Wyślij wiadomość
                 </Button>
               </form>
             </Card>
