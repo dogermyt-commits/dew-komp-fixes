@@ -16,7 +16,7 @@ const CustomOffer = () => {
     budget: "",
     description: "",
   });
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
     if (!formData.name || !formData.email || !formData.description) {
@@ -28,24 +28,46 @@ const CustomOffer = () => {
       return;
     }
 
-    const subject = encodeURIComponent("Zapytanie o indywidualną wycenę - DEW-Komp");
-    const body = encodeURIComponent(
-      `Imię i nazwisko: ${formData.name}\n` +
-      `Email: ${formData.email}\n` +
-      `Telefon: ${formData.phone || "Nie podano"}\n` +
-      `Rodzaj usługi: ${formData.serviceType || "Nie podano"}\n` +
-      `Budżet: ${formData.budget || "Nie podano"}\n\n` +
-      `Opis projektu:\n${formData.description}`
-    );
-    
-    window.location.href = `mailto:kontakt@dew-komp.pl?subject=${subject}&body=${body}`;
-    
-    toast({
-      title: "Otwieranie klienta email...",
-      description: "Twoja aplikacja email zostanie uruchomiona z wypełnioną wiadomością.",
-    });
-  };
+    try {
+      const response = await fetch("/sendmail.php", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          form: "custom-offer",
+          ...formData,
+        }),
+      });
 
+      const data = await response.json().catch(() => null);
+
+      if (!response.ok || (data && data.success === false)) {
+        throw new Error(data?.message || "Wystąpił błąd podczas wysyłania wiadomości.");
+      }
+
+      toast({
+        title: "Zapytanie wysłane",
+        description: "Dziękujemy za wiadomość. Wrócimy z wyceną tak szybko, jak to możliwe.",
+      });
+
+      setFormData({
+        name: "",
+        email: "",
+        phone: "",
+        serviceType: "",
+        budget: "",
+        description: "",
+      });
+    } catch (error) {
+      console.error(error);
+      toast({
+        title: "Błąd",
+        description: "Nie udało się wysłać zapytania. Spróbuj ponownie później.",
+        variant: "destructive",
+      });
+    }
+  };
   return (
     <div className="py-20">
       <div className="container mx-auto px-4">

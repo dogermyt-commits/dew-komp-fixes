@@ -16,9 +16,9 @@ const Contact = () => {
   });
   
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     if (!formData.name || !formData.email || !formData.message) {
       toast({
         title: "Błąd",
@@ -28,22 +28,44 @@ const Contact = () => {
       return;
     }
 
-    const subject = encodeURIComponent("Wiadomość z formularza kontaktowego - DEW-Komp");
-    const body = encodeURIComponent(
-      `Imię i nazwisko: ${formData.name}\n` +
-      `Email: ${formData.email}\n` +
-      `Telefon: ${formData.phone || "Nie podano"}\n\n` +
-      `Wiadomość:\n${formData.message}`
-    );
-    
-    window.location.href = `mailto:kontakt@dew-komp.pl?subject=${subject}&body=${body}`;
-    
-    toast({
-      title: "Otwieranie klienta email...",
-      description: "Twoja aplikacja email zostanie uruchomiona z wypełnioną wiadomością.",
-    });
-  };
+    try {
+      const response = await fetch("/sendmail.php", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          form: "contact",
+          ...formData,
+        }),
+      });
 
+      const data = await response.json().catch(() => null);
+
+      if (!response.ok || (data && data.success === false)) {
+        throw new Error(data?.message || "Wystąpił błąd podczas wysyłania wiadomości.");
+      }
+
+      toast({
+        title: "Wiadomość wysłana",
+        description: "Dziękujemy za kontakt. Odezwiemy się najszybciej jak to możliwe.",
+      });
+
+      setFormData({
+        name: "",
+        email: "",
+        phone: "",
+        message: "",
+      });
+    } catch (error) {
+      console.error(error);
+      toast({
+        title: "Błąd",
+        description: "Nie udało się wysłać wiadomości. Spróbuj ponownie później.",
+        variant: "destructive",
+      });
+    }
+  };
   return (
     <div className="py-20">
       <div className="container mx-auto px-4">
