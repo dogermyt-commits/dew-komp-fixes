@@ -27,21 +27,8 @@ const Footer = () => {
           </div>
 
           <div>
-            <h3 className="font-semibold mb-4">Szybkie linki</h3>
-            <div className="space-y-2 text-sm">
-              <a href="/services" className="block text-muted-foreground hover:text-primary transition-colors">
-                Usługi
-              </a>
-              <a href="/pricing" className="block text-muted-foreground hover:text-primary transition-colors">
-                Cennik
-              </a>
-              <a href="/terms" className="block text-muted-foreground hover:text-primary transition-colors">
-                Regulamin
-              </a>
-              <a href="/contact" className="block text-muted-foreground hover:text-primary transition-colors">
-                Kontakt
-              </a>
-            </div>
+            
+            
           </div>
         </div>
 
