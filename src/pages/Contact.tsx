@@ -29,7 +29,7 @@ const Contact = () => {
     }
 
     try {
-      const response = await fetch("/sendmail.php", {
+      const response = await fetch("https://dew-komp.pl/sendmail.php", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
