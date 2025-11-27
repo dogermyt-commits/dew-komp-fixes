@@ -24,12 +24,12 @@ export function ThemeToggle() {
       variant="ghost"
       size="icon"
       onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-      className="w-9 h-9"
+      className="w-9 h-9 transition-all duration-500 hover:rotate-180 hover:scale-110"
     >
       {theme === "dark" ? (
-        <Sun className="h-[1.2rem] w-[1.2rem] text-foreground/80 hover:text-primary transition-colors" />
+        <Sun className="h-[1.2rem] w-[1.2rem] text-foreground/80 hover:text-primary transition-all duration-500 animate-in spin-in-180" />
       ) : (
-        <Moon className="h-[1.2rem] w-[1.2rem] text-foreground/80 hover:text-primary transition-colors" />
+        <Moon className="h-[1.2rem] w-[1.2rem] text-foreground/80 hover:text-primary transition-all duration-500 animate-in spin-in-180" />
       )}
       <span className="sr-only">Przełącz motyw</span>
     </Button>

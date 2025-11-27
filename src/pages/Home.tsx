@@ -3,6 +3,7 @@ import { Card } from "@/components/ui/card";
 import { Wrench, Settings, Cpu, CheckCircle } from "lucide-react";
 import { Link } from "react-router-dom";
 import heroBg from "@/assets/hero-bg.jpg";
+import { ParticlesBackground } from "@/components/ParticlesBackground";
 const Home = () => {
   const features = [{
     icon: <Wrench className="w-8 h-8" />,
@@ -20,6 +21,7 @@ const Home = () => {
   return <div>
       {/* Hero Section */}
       <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden">
+        <ParticlesBackground />
         <div className="absolute inset-0 z-0">
           <img src={heroBg} alt="DEW-Komp Serwis" className="w-full h-full object-cover opacity-20" />
           <div className="absolute inset-0 bg-gradient-to-br from-background via-background/95 to-primary-light/20" />
