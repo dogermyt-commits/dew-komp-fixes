@@ -39,15 +39,16 @@ const AppContent = () => {
       {isNavigating && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-background/80 backdrop-blur-sm">
           <div className="relative">
-            <div className="w-12 h-12 rounded-full animate-spin relative">
-              <div
-                className="absolute inset-0 rounded-full"
-                style={{
-                  background: "conic-gradient(from 0deg, hsl(142, 76%, 36%), hsl(199, 89%, 48%), transparent)",
-                }}
-              />
-              <div className="absolute inset-1 rounded-full bg-background" />
-            </div>
+            {/* Outer rotating ring */}
+            <div className="absolute inset-0 w-16 h-16 rounded-full border-3 border-transparent border-t-primary border-r-primary animate-spin" 
+                 style={{ animationDuration: '1s' }} />
+            
+            {/* Middle rotating ring - opposite direction */}
+            <div className="absolute inset-1.5 w-13 h-13 rounded-full border-3 border-transparent border-b-accent border-l-accent animate-spin" 
+                 style={{ animationDuration: '1.5s', animationDirection: 'reverse' }} />
+            
+            {/* Inner glow effect */}
+            <div className="absolute inset-3 w-10 h-10 rounded-full bg-gradient-to-br from-primary/20 to-accent/20 blur-md animate-pulse" />
           </div>
         </div>
       )}
