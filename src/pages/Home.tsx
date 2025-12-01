@@ -4,7 +4,13 @@ import { Wrench, Settings, Cpu, CheckCircle } from "lucide-react";
 import { Link } from "react-router-dom";
 import heroBg from "@/assets/hero-bg.jpg";
 import { ParticlesBackground } from "@/components/ParticlesBackground";
+import { useScrollAnimation } from "@/hooks/use-scroll-animation";
 const Home = () => {
+  const featuresSection = useScrollAnimation();
+  const pricingSection = useScrollAnimation();
+  const testimonialsSection = useScrollAnimation();
+  const ctaSection = useScrollAnimation();
+
   const features = [{
     icon: <Wrench className="w-8 h-8" />,
     title: "Naprawa komputerów",
@@ -51,7 +57,12 @@ const Home = () => {
       </section>
 
       {/* Features Section */}
-      <section className="py-20 bg-muted/50">
+      <section 
+        ref={featuresSection.ref}
+        className={`py-20 bg-muted/50 transition-all duration-700 ${
+          featuresSection.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+        }`}
+      >
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center mb-12">
             <h2 className="text-4xl font-bold mb-6">Kompleksowe usługi serwisowe w Zabrzu</h2>
@@ -106,7 +117,12 @@ const Home = () => {
       </section>
 
       {/* Quick Pricing Preview */}
-      <section className="py-20">
+      <section 
+        ref={pricingSection.ref}
+        className={`py-20 transition-all duration-700 ${
+          pricingSection.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+        }`}
+      >
         <div className="container mx-auto px-4">
           <h2 className="text-4xl font-bold text-center mb-4">Cennik wybranych usług</h2>
           <p className="text-center text-muted-foreground mb-12 max-w-2xl mx-auto">
@@ -147,7 +163,12 @@ const Home = () => {
       </section>
 
       {/* Testimonials Section */}
-      <section className="py-20 bg-muted/30">
+      <section 
+        ref={testimonialsSection.ref}
+        className={`py-20 bg-muted/30 transition-all duration-700 ${
+          testimonialsSection.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+        }`}
+      >
         <div className="container mx-auto px-4">
           <h2 className="text-4xl font-bold text-center mb-4">Co mówią nasi klienci?</h2>
           <p className="text-center text-muted-foreground mb-12 max-w-2xl mx-auto">
@@ -201,7 +222,12 @@ const Home = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-gradient-primary text-primary-foreground">
+      <section 
+        ref={ctaSection.ref}
+        className={`py-20 bg-gradient-primary text-primary-foreground transition-all duration-700 ${
+          ctaSection.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+        }`}
+      >
         <div className="container mx-auto px-4 text-center">
           <h2 className="text-4xl font-bold mb-4">Masz problem z komputerem?</h2>
           <p className="text-lg mb-8 opacity-90 max-w-2xl mx-auto">
