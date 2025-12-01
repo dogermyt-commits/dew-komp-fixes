@@ -38,17 +38,21 @@ const AppContent = () => {
     <>
       {isNavigating && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-background/80 backdrop-blur-sm">
-          <div className="relative">
+          <div className="relative w-16 h-16">
             {/* Outer rotating ring */}
-            <div className="absolute inset-0 w-16 h-16 rounded-full border-3 border-transparent border-t-primary border-r-primary animate-spin" 
-                 style={{ animationDuration: '1s' }} />
+            <div 
+              className="absolute inset-0 rounded-full border-[3px] border-transparent border-t-primary border-r-primary animate-spin" 
+              style={{ animationDuration: '0.8s' }} 
+            />
             
             {/* Middle rotating ring - opposite direction */}
-            <div className="absolute inset-1.5 w-13 h-13 rounded-full border-3 border-transparent border-b-accent border-l-accent animate-spin" 
-                 style={{ animationDuration: '1.5s', animationDirection: 'reverse' }} />
+            <div 
+              className="absolute top-1 left-1 right-1 bottom-1 rounded-full border-[3px] border-transparent border-b-accent border-l-accent" 
+              style={{ animation: 'spin 1.2s linear infinite reverse' }} 
+            />
             
             {/* Inner glow effect */}
-            <div className="absolute inset-3 w-10 h-10 rounded-full bg-gradient-to-br from-primary/20 to-accent/20 blur-md animate-pulse" />
+            <div className="absolute top-2 left-2 right-2 bottom-2 rounded-full bg-gradient-to-br from-primary/30 to-accent/30 blur-sm animate-pulse" />
           </div>
         </div>
       )}
