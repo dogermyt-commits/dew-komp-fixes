@@ -13,6 +13,7 @@ const Contact = () => {
     email: "",
     phone: "",
     message: "",
+    honeypot: "", // Pole antyspamowe
   });
   
 
@@ -56,6 +57,7 @@ const Contact = () => {
         email: "",
         phone: "",
         message: "",
+        honeypot: "",
       });
     } catch (error) {
       console.error(error);
@@ -130,6 +132,18 @@ const Contact = () => {
             <Card className="p-6 border-border shadow-medium">
               <h2 className="text-2xl font-semibold mb-6">Formularz kontaktowy</h2>
               <form onSubmit={handleSubmit} className="space-y-4">
+                {/* Honeypot - ukryte pole antyspamowe */}
+                <div className="absolute -left-[9999px]" aria-hidden="true">
+                  <Input
+                    type="text"
+                    name="website"
+                    tabIndex={-1}
+                    autoComplete="off"
+                    value={formData.honeypot}
+                    onChange={(e) => setFormData({ ...formData, honeypot: e.target.value })}
+                  />
+                </div>
+                
                 <div>
                   <Label htmlFor="name">Imię i nazwisko *</Label>
                   <Input

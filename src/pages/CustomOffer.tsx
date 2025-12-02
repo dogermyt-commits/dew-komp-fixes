@@ -15,6 +15,7 @@ const CustomOffer = () => {
     serviceType: "",
     budget: "",
     description: "",
+    honeypot: "", // Pole antyspamowe
   });
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -58,6 +59,7 @@ const CustomOffer = () => {
         serviceType: "",
         budget: "",
         description: "",
+        honeypot: "",
       });
     } catch (error) {
       console.error(error);
@@ -83,6 +85,18 @@ const CustomOffer = () => {
 
           <Card className="p-8 shadow-large border-border">
             <form onSubmit={handleSubmit} className="space-y-6">
+              {/* Honeypot - ukryte pole antyspamowe */}
+              <div className="absolute -left-[9999px]" aria-hidden="true">
+                <Input
+                  type="text"
+                  name="website"
+                  tabIndex={-1}
+                  autoComplete="off"
+                  value={formData.honeypot}
+                  onChange={(e) => setFormData({ ...formData, honeypot: e.target.value })}
+                />
+              </div>
+              
               <div className="grid md:grid-cols-2 gap-4">
                 <div>
                   <Label htmlFor="name">Imię i nazwisko *</Label>
