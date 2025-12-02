@@ -22,8 +22,14 @@ if (!$data) {
     exit();
 }
 
-$to = 'serwis@dew-komp.pl';
 $formType = isset($data['form']) ? $data['form'] : 'contact';
+
+// Różne adresy email w zależności od formularza
+if ($formType === 'custom-offer') {
+    $to = 'serwis@dew-komp.pl';
+} else {
+    $to = 'kontakt@dew-komp.pl';
+}
 
 // Sanityzacja danych
 $name = isset($data['name']) ? htmlspecialchars(strip_tags($data['name'])) : '';
