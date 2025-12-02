@@ -31,6 +31,14 @@ if ($formType === 'custom-offer') {
     $to = 'kontakt@dew-komp.pl';
 }
 
+// Sprawdzenie honeypot (ochrona antyspamowa)
+$honeypot = isset($data['honeypot']) ? $data['honeypot'] : '';
+if (!empty($honeypot)) {
+    // Bot wypełnił ukryte pole - udajemy sukces, ale nie wysyłamy
+    echo json_encode(['success' => true, 'message' => 'Wiadomość wysłana']);
+    exit();
+}
+
 // Sanityzacja danych
 $name = isset($data['name']) ? htmlspecialchars(strip_tags($data['name'])) : '';
 $email = isset($data['email']) ? filter_var($data['email'], FILTER_SANITIZE_EMAIL) : '';
