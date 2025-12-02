@@ -29,7 +29,7 @@ const CustomOffer = () => {
     }
 
     try {
-      const response = await fetch("/sendmail2.php", {
+      const response = await fetch("/sendmail.php", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
