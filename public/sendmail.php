@@ -22,21 +22,48 @@ if (!$data) {
     exit();
 }
 
-$formType = isset($data['form']) ? $data['form'] : 'contact';
-
-// Konfiguracja adresatów - wysyłka na oba adresy
-$to = 'serwis@dew-komp.pl, kontakt@dew-komp.pl';
-
 // Sprawdzenie honeypot (ochrona antyspamowa)
 $honeypot = isset($data['honeypot']) ? $data['honeypot'] : '';
 if (!empty($honeypot)) {
-    // Bot wypełnił ukryte pole - udajemy sukces, ale nie wysyłamy
     echo json_encode(['success' => true, 'message' => 'Wiadomość wysłana']);
     exit();
 }
 
-// Sanityzacja danych - usunięto htmlspecialchars, pozostawiono strip_tags
-// Dzięki temu nowe linie i polskie znaki będą poprawnie wyświetlane w plain text
+// Rate limiting - max 5 wiadomości dziennie z jednego IP
+$ip = $_SERVER['REMOTE_ADDR'];
+$rateLimitFile = sys_get_temp_dir() . '/sendmail_ratelimit_' . md5($ip) . '.json';
+$today = date('Y-m-d');
+$maxMessagesPerDay = 5;
+
+$rateData = [];
+if (file_exists($rateLimitFile)) {
+    $rateData = json_decode(file_get_contents($rateLimitFile), true) ?: [];
+}
+
+// Reset jeśli nowy dzień
+if (!isset($rateData['date']) || $rateData['date'] !== $today) {
+    $rateData = ['date' => $today, 'count' => 0];
+}
+
+if ($rateData['count'] >= $maxMessagesPerDay) {
+    echo json_encode(['success' => false, 'message' => 'Przekroczono limit wiadomości na dziś. Spróbuj ponownie jutro.']);
+    exit();
+}
+
+// Zwiększ licznik
+$rateData['count']++;
+file_put_contents($rateLimitFile, json_encode($rateData));
+
+$formType = isset($data['form']) ? $data['form'] : 'contact';
+
+// Konfiguracja adresatów w zależności od formularza
+if ($formType === 'custom-offer') {
+    $to = 'serwis@dew-komp.pl';
+} else {
+    $to = 'kontakt@dew-komp.pl';
+}
+
+// Sanityzacja danych
 $name = isset($data['name']) ? strip_tags(trim($data['name'])) : '';
 $email = isset($data['email']) ? filter_var($data['email'], FILTER_SANITIZE_EMAIL) : '';
 $phone = isset($data['phone']) ? strip_tags(trim($data['phone'])) : 'Nie podano';
@@ -88,7 +115,7 @@ if ($formType === 'custom-offer') {
 }
 
 // Nagłówki emaila
-$headers = "From: DEW-Komp <serwis@dew-komp.pl>\r\n";
+$headers = "From: DEW-Komp <noreply@dew-komp.pl>\r\n";
 $headers .= "Reply-To: $email\r\n";
 $headers .= "Content-Type: text/plain; charset=UTF-8\r\n";
 $headers .= "X-Mailer: PHP/" . phpversion();

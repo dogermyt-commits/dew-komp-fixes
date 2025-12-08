@@ -6,6 +6,8 @@ import { Label } from "@/components/ui/label";
 import { Mail, Phone, MapPin } from "lucide-react";
 import { useState } from "react";
 import { toast } from "@/hooks/use-toast";
+import { SuccessToast } from "@/components/ui/success-toast";
+import { playSuccessSound } from "@/utils/successSound";
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -47,9 +49,14 @@ const Contact = () => {
         throw new Error(data?.message || "Wystąpił błąd podczas wysyłania wiadomości.");
       }
 
+      playSuccessSound();
       toast({
-        title: "Wiadomość wysłana",
-        description: "Dziękujemy za kontakt. Odezwiemy się najszybciej jak to możliwe.",
+        description: (
+          <SuccessToast 
+            title="Wiadomość wysłana!" 
+            description="Dziękujemy za kontakt. Odezwiemy się najszybciej jak to możliwe." 
+          />
+        ),
       });
 
       setFormData({

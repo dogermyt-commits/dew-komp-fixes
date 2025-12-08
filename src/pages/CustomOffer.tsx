@@ -6,6 +6,8 @@ import { Label } from "@/components/ui/label";
 import { FileText } from "lucide-react";
 import { useState } from "react";
 import { toast } from "@/hooks/use-toast";
+import { SuccessToast } from "@/components/ui/success-toast";
+import { playSuccessSound } from "@/utils/successSound";
 
 const CustomOffer = () => {
   const [formData, setFormData] = useState({
@@ -47,9 +49,14 @@ const CustomOffer = () => {
         throw new Error(data?.message || "Wystąpił błąd podczas wysyłania wiadomości.");
       }
 
+      playSuccessSound();
       toast({
-        title: "Zapytanie wysłane",
-        description: "Dziękujemy za wiadomość. Wrócimy z wyceną tak szybko, jak to możliwe.",
+        description: (
+          <SuccessToast 
+            title="Zapytanie wysłane!" 
+            description="Dziękujemy za wiadomość. Wrócimy z wyceną tak szybko, jak to możliwe." 
+          />
+        ),
       });
 
       setFormData({
