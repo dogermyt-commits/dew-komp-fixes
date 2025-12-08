@@ -23,58 +23,46 @@ const queryClient = new QueryClient();
 
 const AppContent = () => {
   const location = useLocation();
-  const [isNavigating, setIsNavigating] = useState(false);
+  const [displayLocation, setDisplayLocation] = useState(location);
+  const [transitionStage, setTransitionStage] = useState("fade-in");
 
   useEffect(() => {
-    setIsNavigating(true);
-    const timer = setTimeout(() => {
-      setIsNavigating(false);
-    }, 400);
+    if (location !== displayLocation) {
+      setTransitionStage("fade-out");
+    }
+  }, [location, displayLocation]);
 
-    return () => clearTimeout(timer);
-  }, [location.pathname]);
+  const handleAnimationEnd = () => {
+    if (transitionStage === "fade-out") {
+      setTransitionStage("fade-in");
+      setDisplayLocation(location);
+    }
+  };
 
   return (
-    <>
-      {isNavigating && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-background/80 backdrop-blur-sm">
-          <div className="relative w-16 h-16">
-            {/* Outer rotating ring */}
-            <div 
-              className="absolute inset-0 rounded-full border-[3px] border-transparent border-t-primary border-r-primary animate-spin" 
-              style={{ animationDuration: '0.8s' }} 
-            />
-            
-            {/* Middle rotating ring - opposite direction */}
-            <div 
-              className="absolute top-1 left-1 right-1 bottom-1 rounded-full border-[3px] border-transparent border-b-accent border-l-accent" 
-              style={{ animation: 'spin 1.2s linear infinite reverse' }} 
-            />
-            
-            {/* Inner glow effect */}
-            <div className="absolute top-2 left-2 right-2 bottom-2 rounded-full bg-gradient-to-br from-primary/30 to-accent/30 blur-sm animate-pulse" />
-          </div>
-        </div>
-      )}
-      <div className="min-h-screen flex flex-col">
-        <Navigation />
-        <main className="flex-1 pt-16">
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/about" element={<About />} />
-            <Route path="/services" element={<Services />} />
-            <Route path="/pricing" element={<Pricing />} />
-            <Route path="/portfolio" element={<Portfolio />} />
-            <Route path="/contact" element={<Contact />} />
-            <Route path="/custom-offer" element={<CustomOffer />} />
-            <Route path="/terms" element={<Terms />} />
-            <Route path="/logo-tool" element={<LogoTool />} />
-            <Route path="*" element={<NotFound />} />
-          </Routes>
-        </main>
-        <Footer />
-      </div>
-    </>
+    <div className="min-h-screen flex flex-col">
+      <Navigation />
+      <main 
+        className={`flex-1 pt-16 transition-opacity duration-300 ease-in-out ${
+          transitionStage === "fade-out" ? "opacity-0" : "opacity-100"
+        }`}
+        onTransitionEnd={handleAnimationEnd}
+      >
+        <Routes location={displayLocation}>
+          <Route path="/" element={<Home />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/services" element={<Services />} />
+          <Route path="/pricing" element={<Pricing />} />
+          <Route path="/portfolio" element={<Portfolio />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/custom-offer" element={<CustomOffer />} />
+          <Route path="/terms" element={<Terms />} />
+          <Route path="/logo-tool" element={<LogoTool />} />
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+      </main>
+      <Footer />
+    </div>
   );
 };
 
