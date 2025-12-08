@@ -24,12 +24,8 @@ if (!$data) {
 
 $formType = isset($data['form']) ? $data['form'] : 'contact';
 
-// Różne adresy email w zależności od formularza
-if ($formType === 'custom-offer') {
-    $to = 'serwis@dew-komp.pl';
-} else {
-    $to = 'kontakt@dew-komp.pl';
-}
+// Konfiguracja adresatów - wysyłka na oba adresy
+$to = 'serwis@dew-komp.pl, kontakt@dew-komp.pl';
 
 // Sprawdzenie honeypot (ochrona antyspamowa)
 $honeypot = isset($data['honeypot']) ? $data['honeypot'] : '';
@@ -39,10 +35,11 @@ if (!empty($honeypot)) {
     exit();
 }
 
-// Sanityzacja danych
-$name = isset($data['name']) ? htmlspecialchars(strip_tags($data['name'])) : '';
+// Sanityzacja danych - usunięto htmlspecialchars, pozostawiono strip_tags
+// Dzięki temu nowe linie i polskie znaki będą poprawnie wyświetlane w plain text
+$name = isset($data['name']) ? strip_tags(trim($data['name'])) : '';
 $email = isset($data['email']) ? filter_var($data['email'], FILTER_SANITIZE_EMAIL) : '';
-$phone = isset($data['phone']) ? htmlspecialchars(strip_tags($data['phone'])) : 'Nie podano';
+$phone = isset($data['phone']) ? strip_tags(trim($data['phone'])) : 'Nie podano';
 
 // Walidacja podstawowa
 if (empty($name) || empty($email)) {
@@ -57,9 +54,9 @@ if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
 
 // Budowanie treści w zależności od typu formularza
 if ($formType === 'custom-offer') {
-    $serviceType = isset($data['serviceType']) ? htmlspecialchars(strip_tags($data['serviceType'])) : 'Nie podano';
-    $budget = isset($data['budget']) ? htmlspecialchars(strip_tags($data['budget'])) : 'Nie podano';
-    $description = isset($data['description']) ? htmlspecialchars(strip_tags($data['description'])) : '';
+    $serviceType = isset($data['serviceType']) ? strip_tags(trim($data['serviceType'])) : 'Nie podano';
+    $budget = isset($data['budget']) ? strip_tags(trim($data['budget'])) : 'Nie podano';
+    $description = isset($data['description']) ? strip_tags($data['description']) : '';
     
     if (empty($description)) {
         echo json_encode(['success' => false, 'message' => 'Opis jest wymagany']);
@@ -75,7 +72,7 @@ if ($formType === 'custom-offer') {
     $body .= "Budżet: $budget\n\n";
     $body .= "Opis potrzeb:\n$description\n";
 } else {
-    $message = isset($data['message']) ? htmlspecialchars(strip_tags($data['message'])) : '';
+    $message = isset($data['message']) ? strip_tags($data['message']) : '';
     
     if (empty($message)) {
         echo json_encode(['success' => false, 'message' => 'Wiadomość jest wymagana']);
