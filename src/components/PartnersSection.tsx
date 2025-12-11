@@ -2,13 +2,25 @@ import furiozaLogo from "@/assets/partners/furioza-zabrze.jpg";
 import wildrealmLogo from "@/assets/partners/wildrealm.jpg";
 
 const partners = [
-  { name: "Furioza Zabrze", logo: furiozaLogo, type: "Klub piłkarski", link: "https://www.instagram.com/furiozazabrze/" },
-  { name: "WildRealm", logo: wildrealmLogo, type: "Serwer Minecraft", link: null },
+  { name: "Furioza Zabrze", logo: furiozaLogo, type: "Klub piłkarski", link: "https://www.instagram.com/furiozazabrze/", hoverText: "Najlepszy Klub <3" },
+  { name: "WildRealm", logo: wildrealmLogo, type: "Serwer Minecraft", link: null, hoverText: "Najlepszy serwer minecraft!!!" },
 ];
 
 export const PartnersSection = () => {
-  // Duplicate once for seamless infinite scroll
   const duplicatedPartners = [...partners, ...partners];
+
+  const PartnerCard = ({ partner }: { partner: typeof partners[0] }) => (
+    <div className="relative w-32 h-32 md:w-40 md:h-40 rounded-xl overflow-hidden bg-card border border-border shadow-soft group-hover:shadow-medium group-hover:scale-105 transition-all duration-300">
+      <img
+        src={partner.logo}
+        alt={partner.name}
+        className="w-full h-full object-cover"
+      />
+      <div className="absolute inset-0 bg-primary/90 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+        <p className="text-primary-foreground font-bold text-center px-2 text-sm">{partner.hoverText}</p>
+      </div>
+    </div>
+  );
 
   return (
     <section className="py-16 bg-muted/30 overflow-hidden">
@@ -17,8 +29,8 @@ export const PartnersSection = () => {
         <p className="text-center text-muted-foreground">Firmy i organizacje, z którymi współpracujemy</p>
       </div>
       
-      <div className="relative">
-        <div className="flex animate-marquee">
+      <div className="relative w-full bg-card/50 border-y border-border py-8 group/marquee">
+        <div className="flex animate-marquee group-hover/marquee:[animation-play-state:paused]">
           {duplicatedPartners.map((partner, index) => (
             <div
               key={`${partner.name}-${index}`}
@@ -26,25 +38,13 @@ export const PartnersSection = () => {
             >
               {partner.link ? (
                 <a href={partner.link} target="_blank" rel="noopener noreferrer" className="block">
-                  <div className="w-32 h-32 md:w-40 md:h-40 rounded-xl overflow-hidden bg-card border border-border shadow-soft group-hover:shadow-medium group-hover:scale-105 transition-all duration-300">
-                    <img
-                      src={partner.logo}
-                      alt={partner.name}
-                      className="w-full h-full object-cover"
-                    />
-                  </div>
+                  <PartnerCard partner={partner} />
                   <p className="text-center mt-3 font-semibold text-sm">{partner.name}</p>
                   <p className="text-center text-xs text-muted-foreground">{partner.type}</p>
                 </a>
               ) : (
                 <div>
-                  <div className="w-32 h-32 md:w-40 md:h-40 rounded-xl overflow-hidden bg-card border border-border shadow-soft group-hover:shadow-medium group-hover:scale-105 transition-all duration-300">
-                    <img
-                      src={partner.logo}
-                      alt={partner.name}
-                      className="w-full h-full object-cover"
-                    />
-                  </div>
+                  <PartnerCard partner={partner} />
                   <p className="text-center mt-3 font-semibold text-sm">{partner.name}</p>
                   <p className="text-center text-xs text-muted-foreground">{partner.type}</p>
                 </div>
