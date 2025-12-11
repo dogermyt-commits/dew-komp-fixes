@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import heroBg from "@/assets/hero-bg.jpg";
 import { ParticlesBackground } from "@/components/ParticlesBackground";
 import { useScrollAnimation } from "@/hooks/use-scroll-animation";
+import { PartnersSection } from "@/components/PartnersSection";
 const Home = () => {
   const featuresSection = useScrollAnimation();
   const pricingSection = useScrollAnimation();
@@ -220,6 +221,9 @@ const Home = () => {
           </div>
         </div>
       </section>
+
+      {/* Partners Section */}
+      <PartnersSection />
 
       {/* CTA Section */}
       <section 
