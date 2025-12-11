@@ -10,14 +10,18 @@ export const PartnersSection = () => {
   const duplicatedPartners = [...partners, ...partners];
 
   const PartnerCard = ({ partner }: { partner: typeof partners[0] }) => (
-    <div className="relative w-32 h-32 md:w-40 md:h-40 rounded-xl overflow-hidden bg-card border border-border shadow-soft group-hover:shadow-medium group-hover:scale-105 transition-all duration-300">
-      <img
-        src={partner.logo}
-        alt={partner.name}
-        className="w-full h-full object-cover"
-      />
-      <div className="absolute inset-0 bg-primary/90 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-        <p className="text-primary-foreground font-bold text-center px-2 text-sm">{partner.hoverText}</p>
+    <div className="relative">
+      <div className="w-32 h-32 md:w-40 md:h-40 rounded-xl overflow-hidden bg-card border border-border shadow-soft group-hover:shadow-large group-hover:scale-110 transition-all duration-300">
+        <img
+          src={partner.logo}
+          alt={partner.name}
+          className="w-full h-full object-cover"
+        />
+      </div>
+      <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 group-hover:-bottom-8 transition-all duration-300">
+        <span className="whitespace-nowrap bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent font-bold text-sm drop-shadow-lg animate-pulse">
+          {partner.hoverText}
+        </span>
       </div>
     </div>
   );
